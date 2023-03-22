@@ -101,7 +101,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const bodyParser = require("body-parser");
-const { adminAuth, userAuth } = require("./middleware/auth.js");
+// const { adminAuth, userAuth } = require("./middleware/auth.js");
 const connectDB = require("./db");
 
 const app = express();
@@ -130,21 +130,21 @@ app.set('view engine', 'ejs');
 const routes = require('./server/routes/recipeRoutes.js')
 app.use('/', routes);
 
-// const authRoutes= require('./server/routes/recipeRoutes.js')
-// app.use('/', authRoutes);
+const authRoutes= require('./server/routes/authRoutes.js')
+app.use('/', authRoutes);
 connectDB();
 // Routes
 app.use("/api/auth", require("./Auth/route"));
 
-app.get("/", (req, res) => res.render("home"));
-app.get("/register", (req, res) => res.render("register"));
-app.get("/login", (req, res) => res.render("login"));
+// app.get("/", (req, res) => res.render("home"));
+// app.get("/register", (req, res) => res.render("register"));
+// app.get("/login", (req, res) => res.render("login"));
 app.get("/logout", (req, res) => {
   res.cookie("jwt", "", { maxAge: "1" });
   res.redirect("/");
 });
-app.get("/admin", adminAuth, (req, res) => res.render("admin"));
-app.get("/basic", userAuth, (req, res) => res.render("user"));
+// app.get("/admin", adminAuth, (req, res) => res.render("admin"));
+// app.get("/basic", userAuth, (req, res) => res.render("user"));
 
 app.listen(port, ()=> console.log(`Listening to port ${port}`));
 

@@ -1,21 +1,31 @@
 // routes/userRoutes.js
-const express = require("express");
-const User = require("../models/userModel");
-const bcrypt = require("bcrypt");
-
+const express = require('express');
+const { adminAuth, userAuth } = require('../../middleware/auth');
 const router = express.Router();
+const authController = require('../controllers/authController');
 /**
  * App Routes 
 */
-// router.get('/', recipeController.homepage);
-// router.get('/recipe/:id', recipeController.exploreRecipe );
-// router.get('/categories', recipeController.exploreCategories);
-// router.get('/categories/:id', recipeController.exploreCategoriesById);
-// router.post('/search', recipeController.searchRecipe);
-// router.get('/explore-latest', recipeController.exploreLatest);
-// router.get('/explore-random', recipeController.exploreRandom);
-// router.get('/submit-recipe', recipeController.submitRecipe);
-// router.post('/submit-recipe', recipeController.submitRecipeOnPost);
+router.get('/about"', authController.about);
+router.get('/register', authController.register);
+router.get('/login', authController.login);
+router.get('/logout', authController.logout);
+router.get('/admin', adminAuth, authController.admin);
+router.get('/basic', userAuth, authController.basic);
+router.get('/basic', userAuth, authController.basic);
+
+
+
+
+// app.get("/about", (req, res) => res.render("home"));
+// app.get("/register", (req, res) => res.render("register"));
+// app.get("/login", (req, res) => res.render("login"));
+// app.get("/logout", (req, res) => {
+//   res.cookie("jwt", "", { maxAge: "1" });
+//   res.redirect("/");
+// });
+// app.get("/admin", adminAuth, (req, res) => res.render("admin"));
+// app.get("/basic", userAuth, (req, res) => res.render("user"));
 
  
 module.exports = router;

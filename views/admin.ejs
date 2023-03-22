@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,11 +6,33 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin page</title>
-</head>
+</head> -->
 
-<body>
+<!-- <body> -->
   <div class="display" style="background-color: red;"></div>
   <h1>Users</h1>
+
+  <div>
+    <% if(users != '') { %>
+      <% users.forEach(function(user, index) { %>
+          <div class="pt-1"><%- user.username %></div>
+          <button class="edit">Edit Role</button> 
+          <button class="delete">Delete User</button>
+      <% }) %>
+    <% } %> 
+  </div>
+
+  <tbody>
+    <% users.forEach((user) => { %>
+       
+        <tr>
+            <td><%= user.username %></td>
+            <td><%= user.password %></td>
+            <td><%= user.role %></td>
+         </tr>
+       
+    <% }); %>
+ </tbody>
   <ul></ul>
   <button class="logout"> <a href="/logout">Log Out</a></button>
   <script>
@@ -69,6 +91,6 @@
     }
     getUsers()
   </script>
-</body>
+<!-- </body> -->
 
-</html>
+<!-- </html> -->

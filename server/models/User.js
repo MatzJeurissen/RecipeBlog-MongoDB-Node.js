@@ -16,7 +16,10 @@ const UserSchema = new Mongoose.Schema({
     default: "Basic",
     required: true,
   },
-})
+  accessToken: {
+    type: String
+   }
+  });
 
 const User = Mongoose.model("user", UserSchema)
 module.exports = User
